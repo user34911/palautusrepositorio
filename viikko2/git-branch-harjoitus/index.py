@@ -14,4 +14,4 @@ print(f"{x} - {y} = {erotus(x, y)}")
 print(f"{x} * {y} = {tulo(x, y)}")
 
 logger("lopetetaan")
-print("goodbye!")
+print("goodbye! have a nice evening")
