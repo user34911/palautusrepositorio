@@ -1,12 +1,11 @@
 import requests
-from player import Player
 from rich.console import Console
 from rich.table import Table
-from rich import print as rprint
+from player import Player
 
 class PlayerReader:
     def __init__(self, url: str):
-        response = requests.get(url).json()
+        response = requests.get(url, timeout=10).json()
         self.players = []
 
         for player_dict in response:
@@ -14,8 +13,7 @@ class PlayerReader:
             self.players.append(player)
 
     def __iter__(self):
-        for player in self.players:
-            yield player
+        yield from self.players
 
 class PlayerStats:
     def __init__(self, players):
@@ -43,6 +41,7 @@ def make_table(players, season, nationality):
 
     return table
 
+# pylint: disable=too-many-statements
 def main():
     console = Console()
     season = console.input("season [magenta](2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25, 2025-26)[/magenta]: ")
