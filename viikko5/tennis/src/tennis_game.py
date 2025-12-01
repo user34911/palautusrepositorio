@@ -14,11 +14,11 @@ class TennisGame:
             self.player2_score += 1
 
     def _get_equal_score(self):
-        if self.player1_score is Score.LOVE.value:
+        if self.player1_score == Score.LOVE.value:
             return "Love-All"
-        elif self.player1_score is Score.FIFTEEN.value:
+        elif self.player1_score == Score.FIFTEEN.value:
             return "Fifteen-All"
-        elif self.player1_score is Score.THIRTY.value:
+        elif self.player1_score == Score.THIRTY.value:
             return "Thirty-All"
         else:
             return "Deuce"
