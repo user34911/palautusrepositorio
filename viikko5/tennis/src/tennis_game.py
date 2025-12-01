@@ -33,22 +33,12 @@ class TennisGame:
             return "Advantage player1"
         return "Advantage player2"
 
-    def _get_player1_score(self):
-        if self.player1_score == Score.LOVE.value:
+    def _get_score_string(self, score):
+        if score == Score.LOVE.value:
             return "Love"
-        elif self.player1_score == Score.FIFTEEN.value:
+        elif score == Score.FIFTEEN.value:
             return "Fifteen"
-        elif self.player1_score == Score.THIRTY.value:
-            return "Thirty"
-        else:
-            return "Forty"
-
-    def _get_player2_score(self):
-        if self.player2_score == Score.LOVE.value:
-            return "Love"
-        elif self.player2_score == Score.FIFTEEN.value:
-            return "Fifteen"
-        elif self.player2_score == Score.THIRTY.value:
+        elif score == Score.THIRTY.value:
             return "Thirty"
         else:
             return "Forty"
@@ -65,6 +55,6 @@ class TennisGame:
                 score = self._get_advantage()
 
         else:
-            score = f"{self._get_player1_score()}-{self._get_player2_score()}"
+            score = f"{self._get_score_string(self.player1_score)}-{self._get_score_string(self.player2_score)}"
 
         return score
