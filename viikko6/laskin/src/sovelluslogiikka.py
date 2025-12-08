@@ -2,18 +2,26 @@ from abc import ABC, abstractmethod
 class Sovelluslogiikka:
     def __init__(self, arvo=0):
         self._arvo = arvo
+        self._edellinen = arvo
+
+    def _paivita(self, arvo):
+        self._edellinen = self._arvo
+        self._arvo = arvo
 
     def miinus(self, operandi):
-        self._arvo = self._arvo - operandi
+        self._paivita(self._arvo - operandi)
 
     def plus(self, operandi):
-        self._arvo = self._arvo + operandi
+        self._paivita(self._arvo + operandi)
 
     def nollaa(self):
-        self._arvo = 0
+        self._paivita(0)
 
     def aseta_arvo(self, arvo):
-        self._arvo = arvo
+        self._paivita(arvo)
+
+    def kumoa(self):
+        self._arvo, self._edellinen = self._edellinen, self._arvo
 
     def arvo(self):
         return self._arvo
@@ -50,3 +58,10 @@ class Nollaus(BinaariOperaatio):
 
     def laske(self):
         return self.sovelluslogiika.nollaa()
+
+class Kumoa(BinaariOperaatio):
+    def __init__(self, logiikka, io):
+        super().__init__(logiikka, io)
+
+    def laske(self):
+        return self.sovelluslogiika.kumoa()
